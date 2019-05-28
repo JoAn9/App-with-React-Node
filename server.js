@@ -9,6 +9,8 @@ const posts = require('./routes/api/posts');
 
 const app = express();
 
+app.get('/', (req, res) => res.send('API running'));
+
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
