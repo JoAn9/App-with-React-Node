@@ -9,10 +9,8 @@ const initialState = {
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
-  console.log('payload: ', payload)
   switch(type) {
     case REGISTER_SUCCESS:
-    // ToDo: no token in payload
       localStorage.setItem('token', payload.token);
       return {
         ...state,
