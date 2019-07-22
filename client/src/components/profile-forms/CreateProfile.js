@@ -41,11 +41,79 @@ const CreateProfile = props => {
     linkedin,
   } = formData;
 
+  const fields = [
+    {
+      name: 'company',
+      placeholder: 'Company',
+      value: company,
+      small: 'Could be your own company or one you work for',
+    },
+    {
+      name: 'website',
+      placeholder: 'Website',
+      value: website,
+      small: 'Could be your own or a company website',
+    },
+    {
+      name: 'location',
+      placeholder: 'Location',
+      value: location,
+      small: 'City & state suggested (eg. Boston, MA)',
+    },
+    {
+      name: 'skills',
+      placeholder: '* Skills',
+      value: skills,
+      small: 'Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)',
+    },
+    {
+      name: 'githubusername',
+      placeholder: 'Github Username',
+      value: githubusername,
+      small:
+        'If you want your latest repos and a Github link, include your username',
+    },
+  ];
+
+  const fieldsSocial = [
+    {
+      name: 'twitter',
+      placeholder: 'Twitter URL',
+      value: twitter,
+      className: 'fab fa-twitter fa-2x',
+    },
+    {
+      name: 'facebook',
+      placeholder: 'Facebook URL',
+      value: facebook,
+      className: 'fab fa-facebook fa-2x',
+    },
+    {
+      name: 'youtube',
+      placeholder: 'YouTube URL',
+      value: youtube,
+      className: 'fab fa-youtube fa-2x',
+    },
+    {
+      name: 'linkedin',
+      placeholder: 'Linkedin URL',
+      value: linkedin,
+      className: 'fab fa-linkedin fa-2x',
+    },
+    {
+      name: 'instagram',
+      placeholder: 'Instagram URL',
+      value: instagram,
+      className: 'fab fa-instagram fa-2x',
+    },
+  ];
+
   return (
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Let's get some information to make your profile stand out
+        <i className="fas fa-user" /> Let's get some information to make your
+        profile stand out
       </p>
       <small>* = required field</small>
       <form className="form">
@@ -61,62 +129,24 @@ const CreateProfile = props => {
             <option value="Intern">Intern</option>
             <option value="Other">Other</option>
           </select>
-          <small className="form-text">Give us an idea of where you are at in your career</small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Company"
-            name="company"
-            value={company}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">Could be your own company or one you work for</small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Website"
-            name="website"
-            value={website}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">Could be your own or a company website</small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Location"
-            name="location"
-            value={location}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">City & state suggested (eg. Boston, MA)</small>
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="* Skills"
-            name="skills"
-            value={skills}
-            onChange={e => onChange(e)}
-          />
           <small className="form-text">
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+            Give us an idea of where you are at in your career
           </small>
         </div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Github Username"
-            name="githubusername"
-            value={githubusername}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">
-            If you want your latest repos and a Github link, include your username
-          </small>
-        </div>
+
+        {fields.map(item => (
+          <div key={item.name} className="form-group">
+            <input
+              type="text"
+              placeholder={item.placeholder}
+              name={item.name}
+              value={item.value}
+              onChange={e => onChange(e)}
+            />
+            <small className="form-text">{item.small}</small>
+          </div>
+        ))}
+
         <div className="form-group">
           <textarea
             placeholder="A short bio of yourself"
@@ -140,60 +170,18 @@ const CreateProfile = props => {
 
         {displaySocialInputs && (
           <Fragment>
-            <div className="form-group social-input">
-              <i className="fab fa-twitter fa-2x" />
-              <input
-                type="text"
-                placeholder="Twitter URL"
-                name="twitter"
-                value={twitter}
-                onChange={e => onChange(e)}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-facebook fa-2x" />
-              <input
-                type="text"
-                placeholder="Facebook URL"
-                name="facebook"
-                value={facebook}
-                onChange={e => onChange(e)}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-youtube fa-2x" />
-              <input
-                type="text"
-                placeholder="YouTube URL"
-                name="youtube"
-                value={youtube}
-                onChange={e => onChange(e)}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-linkedin fa-2x" />
-              <input
-                type="text"
-                placeholder="Linkedin URL"
-                name="linkedin"
-                value={linkedin}
-                onChange={e => onChange(e)}
-              />
-            </div>
-
-            <div className="form-group social-input">
-              <i className="fab fa-instagram fa-2x" />
-              <input
-                type="text"
-                placeholder="Instagram URL"
-                name="instagram"
-                value={instagram}
-                onChange={e => onChange(e)}
-              />
-            </div>
+            {fieldsSocial.map(item => (
+              <div key={item.name} className="form-group social-input">
+                <i className={item.className} />
+                <input
+                  type="text"
+                  placeholder={item.placeholder}
+                  name={item.name}
+                  value={item.value}
+                  onChange={e => onChange(e)}
+                />
+              </div>
+            ))}
           </Fragment>
         )}
 
