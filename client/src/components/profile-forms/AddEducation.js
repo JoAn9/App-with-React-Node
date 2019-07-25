@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
 import { addEducation } from '../../actions/profile';
 
 const AddEducation = ({ addEducation, history }) => {
