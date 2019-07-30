@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
+import ProfileTop from './ProfileTop';
 import { getProfileById } from '../../actions/profile';
 
 const Profile = ({
@@ -21,8 +22,6 @@ const Profile = ({
         <Spinner />
       ) : (
         <Fragment>
-          {profile.user.name}
-          <br />
           <Link to="/profiles" className="btn btn-light">
             Back To Profiles
           </Link>
@@ -33,6 +32,9 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
+          <div className="profile-grid my-1">
+            <ProfileTop profile={profile} />
+          </div>
         </Fragment>
       )}
     </Fragment>
