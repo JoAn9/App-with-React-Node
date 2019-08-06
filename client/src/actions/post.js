@@ -5,13 +5,14 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
+  GET_POST,
 } from './types';
 import { setAlert } from './alert';
 
 // Get posts
 export const getPosts = () => async dispatch => {
   try {
-    const res = await axios.get('./api/posts');
+    const res = await axios.get('/api/posts');
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -30,7 +31,7 @@ export const getPosts = () => async dispatch => {
 // Add like
 export const addLike = postId => async dispatch => {
   try {
-    const res = await axios.put(`./api/posts/like/${postId}`);
+    const res = await axios.put(`/api/posts/like/${postId}`);
     dispatch({
       type: UPDATE_LIKES,
       payload: { postId, likes: res.data },
@@ -49,7 +50,7 @@ export const addLike = postId => async dispatch => {
 // Remove like
 export const removeLike = postId => async dispatch => {
   try {
-    const res = await axios.put(`./api/posts/unlike/${postId}`);
+    const res = await axios.put(`/api/posts/unlike/${postId}`);
     dispatch({
       type: UPDATE_LIKES,
       payload: { postId, likes: res.data },
@@ -68,7 +69,7 @@ export const removeLike = postId => async dispatch => {
 // Delete post
 export const deletePost = id => async dispatch => {
   try {
-    await axios.delete(`./api/posts/${id}`);
+    await axios.delete(`/api/posts/${id}`);
     dispatch({
       type: DELETE_POST,
       payload: id,
@@ -94,13 +95,33 @@ export const addPost = formData => async dispatch => {
     },
   };
   try {
-    const res = await axios.post('./api/posts', formData, config);
+    const res = await axios.post('/api/posts', formData, config);
     dispatch({
       type: ADD_POST,
       payload: res.data,
     });
 
     dispatch(setAlert('Post added', 'success'));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+      },
+    });
+  }
+};
+
+// Get post
+export const getPost = id => async dispatch => {
+  console.log('id in act: ', id);
+  try {
+    const res = await axios.get(`/api/posts/${id}`);
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
   } catch (err) {
     dispatch({
       type: POST_ERROR,
