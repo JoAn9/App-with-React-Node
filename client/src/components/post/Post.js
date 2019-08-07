@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from '../post/PostItem';
+import CommentForm from '../post/CommentForm';
 import { getPost } from '../../actions/post';
 
 const Post = ({ getPost, post: { loading, post }, match }) => {
-  console.log(match);
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost]);
@@ -19,6 +19,7 @@ const Post = ({ getPost, post: { loading, post }, match }) => {
         Back to Posts
       </Link>
       <PostItem showActions={false} post={post} />
+      <CommentForm postId={post._id} />
     </Fragment>
   );
 };
