@@ -20,37 +20,33 @@ const Profile = ({
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
 
-  return (
+  const renderProfile = profile ? (
     <Fragment>
-      {loading ? (
-        <Spinner />
-      ) : !profile ? (
-        'Profile not found'
-      ) : (
-        <Fragment>
-          <Link to="/profiles" className="btn btn-light">
-            Back To Profiles
+      <Link to="/profiles" className="btn btn-light">
+        Back To Profiles
+      </Link>
+      {auth.isAuthenticated &&
+        !auth.loading &&
+        auth.user._id === profile.user._id && (
+          <Link to="/edit-profile" className="btn btn-dark">
+            Edit Profile
           </Link>
-          {auth.isAuthenticated &&
-            !auth.loading &&
-            auth.user._id === profile.user._id && (
-              <Link to="/edit-profile" className="btn btn-dark">
-                Edit Profile
-              </Link>
-            )}
-          <div className="profile-grid my-1">
-            <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
-            <ProfileExperience experience={profile.experience} />
-            <ProfileEducation education={profile.education} />
-            {profile.githubusername && (
-              <ProfileRepos githubusername={profile.githubusername} />
-            )}
-          </div>
-        </Fragment>
-      )}
+        )}
+      <div className="profile-grid my-1">
+        <ProfileTop profile={profile} />
+        <ProfileAbout profile={profile} />
+        <ProfileExperience experience={profile.experience} />
+        <ProfileEducation education={profile.education} />
+        {profile.githubusername && (
+          <ProfileRepos githubusername={profile.githubusername} />
+        )}
+      </div>
     </Fragment>
+  ) : (
+    'Profile not found'
   );
+
+  return <Fragment>{loading ? <Spinner /> : renderProfile}</Fragment>;
 };
 
 Profile.propTypes = {
