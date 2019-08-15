@@ -8,7 +8,6 @@ import {
   GET_POST,
   ADD_COMMENT,
   DELETE_COMMENT,
-  CLEAR_PROFILE,
 } from './types';
 import { setAlert } from './alert';
 
@@ -123,9 +122,6 @@ export const getPost = id => async dispatch => {
     dispatch({
       type: GET_POST,
       payload: res.data,
-    });
-    dispatch({
-      type: CLEAR_PROFILE,
     });
   } catch (err) {
     dispatch({
