@@ -8,6 +8,7 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
+  LOADING_TRUE,
 } from './types';
 
 // Get current profile
@@ -33,6 +34,7 @@ export const getCurrentProfile = () => async dispatch => {
 // Get all profiles
 export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOADING_TRUE });
 
   try {
     const res = await axios.get('/api/profile');
@@ -55,6 +57,7 @@ export const getProfiles = () => async dispatch => {
 // Get profile by userId
 export const getProfileById = userId => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOADING_TRUE });
 
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
