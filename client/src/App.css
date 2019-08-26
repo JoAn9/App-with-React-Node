@@ -188,6 +188,11 @@ img {
   color: #fff;
 }
 
+.button-delete {
+  background: inherit;
+  color: #fff;
+}
+
 .btn-success,
 .bg-success,
 .badge-success,
