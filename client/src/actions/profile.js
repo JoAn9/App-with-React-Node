@@ -128,7 +128,7 @@ export const createProfile = (
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'error')));
     }
 
     dispatch({
@@ -164,7 +164,7 @@ export const addExperience = (formData, history) => async dispatch => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'error')));
     }
 
     dispatch({
@@ -200,7 +200,7 @@ export const addEducation = (formData, history) => async dispatch => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'error')));
     }
 
     dispatch({
@@ -271,7 +271,7 @@ export const deleteAccount = () => async dispatch => {
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
 
-      dispatch(setAlert('Your account & profile has been removed'));
+      dispatch(setAlert('Your account & profile has been removed', 'info'));
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,
