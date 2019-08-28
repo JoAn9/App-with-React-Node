@@ -6,6 +6,7 @@ import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
+import ConfirmationDialog from '../layout/ConfirmationDialog';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 
 const Dashboard = ({
@@ -31,12 +32,12 @@ const Dashboard = ({
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
-
-          <div className="my-2">
-            <button className="btn btn-danger" onClick={() => deleteAccount()}>
-              <i className="fas fa-user" /> Delete my account
-            </button>
-          </div>
+          <ConfirmationDialog
+            question="Are you sure you want to delete the account? This can't be undone!"
+            textCancel="Cancel"
+            textConfirm="Delete"
+            doAction={deleteAccount}
+          />
         </Fragment>
       ) : (
         <Fragment>
