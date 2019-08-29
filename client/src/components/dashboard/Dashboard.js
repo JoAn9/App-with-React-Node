@@ -32,12 +32,16 @@ const Dashboard = ({
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
-          <ConfirmationDialog
-            question="Are you sure you want to delete the account? This can't be undone!"
-            textCancel="Cancel"
-            textConfirm="Delete"
-            doAction={deleteAccount}
-          />
+          <div className="my-2">
+            <ConfirmationDialog
+              textButton=" Delete my account"
+              question="Are you sure you want to delete the account? This can't be undone!"
+              textCancel="Cancel"
+              textConfirm="Delete"
+              doAction={deleteAccount}
+              iconClass="fas fa-user"
+            />
+          </div>
         </Fragment>
       ) : (
         <Fragment>

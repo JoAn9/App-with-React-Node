@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import ConfirmationDialog from '../layout/ConfirmationDialog';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 
 const PostItem = ({
@@ -50,13 +51,14 @@ const PostItem = ({
               )}
             </Link>
             {!auth.loading && user === auth.user._id && (
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={e => deletePost(_id)}
-              >
-                <i className="fas fa-times" />
-              </button>
+              <ConfirmationDialog
+                textButton=""
+                question="Are you sure you want to delete this comment?"
+                textCancel="Cancel"
+                textConfirm="Delete"
+                doAction={e => deletePost(_id)}
+                iconClass="fas fa-times"
+              />
             )}
           </Fragment>
         )}
