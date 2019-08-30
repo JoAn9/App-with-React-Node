@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import ConfirmationDialog from '../layout/ConfirmationDialog';
 import { deleteEducation } from '../../actions/profile';
 
 const Education = ({ education, deleteEducation }) => {
@@ -14,12 +15,13 @@ const Education = ({ education, deleteEducation }) => {
         {item.to === null ? 'Now' : <Moment format="YYYY/MM">{item.to}</Moment>}
       </td>
       <td>
-        <button
-          className="btn btn-danger"
-          onClick={() => deleteEducation(item._id)}
-        >
-          Delete
-        </button>
+        <ConfirmationDialog
+          textButton="Delete"
+          question="Are you sure you want to delete this education?"
+          textCancel="Cancel"
+          textConfirm="Delete"
+          doAction={() => deleteEducation(item._id)}
+        />
       </td>
     </tr>
   ));
