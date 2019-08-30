@@ -329,8 +329,8 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
 
     const removeIndex = profile.education
-      .map(item => item.id)
-      .indexOf(req.params.exp_id);
+      .map(item => item._id.toString())
+      .indexOf(req.params.edu_id);
 
     profile.education.splice(removeIndex, 1);
 
