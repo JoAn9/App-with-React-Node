@@ -223,7 +223,7 @@ export const deleteExperience = id => async dispatch => {
       payload: res.data,
     });
 
-    dispatch(setAlert('Experience removed', 'success'));
+    dispatch(setAlert('Experience removed', 'info'));
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
