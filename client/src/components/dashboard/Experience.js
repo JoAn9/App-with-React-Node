@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import ConfirmationDialog from '../layout/ConfirmationDialog';
 import { deleteExperience } from '../../actions/profile';
 
 const Experience = ({ experience, deleteExperience }) => {
@@ -14,12 +15,13 @@ const Experience = ({ experience, deleteExperience }) => {
         {item.to === null ? 'Now' : <Moment format="YYYY/MM">{item.to}</Moment>}
       </td>
       <td>
-        <button
-          className="btn btn-danger"
-          onClick={() => deleteExperience(item._id)}
-        >
-          Delete
-        </button>
+        <ConfirmationDialog
+          textButton="Delete"
+          question="Are you sure you want to delete this experience?"
+          textCancel="Cancel"
+          textConfirm="Delete"
+          doAction={() => deleteExperience(item._id)}
+        />
       </td>
     </tr>
   ));
