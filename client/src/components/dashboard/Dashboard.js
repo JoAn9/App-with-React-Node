@@ -13,13 +13,13 @@ const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile, loading },
+  profile: { profile, loading: loadingProfile },
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  return loading && profile === null ? (
+  return loadingProfile && !profile ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -27,7 +27,7 @@ const Dashboard = ({
       <p className="lead">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>
-      {profile !== null ? (
+      {profile ? (
         <Fragment>
           <DashboardActions />
           <Experience experience={profile.experience} />
