@@ -53,7 +53,7 @@ const PostItem = ({
             {!auth.loading && user === auth.user._id && (
               <ConfirmationDialog
                 textButton=""
-                question="Are you sure you want to delete this comment?"
+                question="Are you sure you want to delete this post?"
                 textCancel="Cancel"
                 textConfirm="Delete"
                 doAction={e => deletePost(_id)}

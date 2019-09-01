@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import ConfirmationDialog from '../layout/ConfirmationDialog';
 import { deleteComment } from '../../actions/post';
 
 const CommentItem = ({
@@ -24,13 +25,14 @@ const CommentItem = ({
         Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
       </p>
       {!auth.loading && auth.user._id === user && (
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={e => deleteComment(postId, _id)}
-        >
-          <i className="fas fa-times" />
-        </button>
+        <ConfirmationDialog
+          textButton=""
+          question="Are you sure you want to delete this comment?"
+          textCancel="Cancel"
+          textConfirm="Delete"
+          doAction={e => deleteComment(postId, _id)}
+          iconClass="fas fa-times"
+        />
       )}
     </div>
   </div>
